@@ -1,6 +1,6 @@
-baseURL = 'http://example.org/'
+baseURL = 'https://xiangqingw.github.io/'
 languageCode = 'en-us'
-title = 'My New Hugo Site'
+title = 'redditcn'
 theme = "ananke"
 publishDir = "docs"
 googleAnalytics = 'G-3W09QM57NF'
