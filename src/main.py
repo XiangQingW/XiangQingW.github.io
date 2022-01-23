@@ -50,6 +50,28 @@ def get_all_gened_question_ids():
     return gened_ids
 
 
+def read_post_header(path):
+    f = open(path, 'r', encoding='utf-8')
+
+    lines = []
+    for line in f:
+        if 'draft' in line:
+            continue
+        lines.append(line)
+
+    f.close()
+    return lines
+
+
+def write_post(path, contents):
+    f = open(path, 'w', encoding='utf-8')
+
+    for line in contents:
+        f.write(line)
+
+    f.close()
+
+
 def write_gened_question_id(id):
     f = open(GENED_QUESTION_IDS_FILE, 'a+', encoding='utf-8')
     f.write(id + '\n')
@@ -60,7 +82,12 @@ def gen_docs():
     id2answers = get_all_cn_answers()
     all_gened_question_ids = get_all_gened_question_ids()
 
+    cur_post_count = 0
+    total_post_count = len(id2answers)
+
     for question_id, answers in id2answers.items():
+        cur_post_count += 1
+        print('start to gen post: {}/{}'.format(cur_post_count, total_post_count))
         if question_id in all_gened_question_ids:
             print('Question has already gened: id= ', question_id)
             continue
@@ -70,7 +97,25 @@ def gen_docs():
             continue
 
         title = answers[0].title
-        subprocess.run(['hugo', 'new', 'posts/' + title + '.md'], shell=True)
+        path = 'posts/' + title[:50] + '.md'
+
+        subprocess.run(['hugo', 'new', path], shell=True)
+
+        path = 'content/' + path
+
+        post_content = read_post_header(path)
+        post_content.append('\n')
+        post_content.append('## ' + title + '  ')
+
+        post_content.append('\n')
+        for idx, answer in enumerate(answers):
+            post_content.append('### ' + '答案 ' + str(idx + 1) + '\n')
+            for line in answer.content.splitlines():
+                post_content.append(line + '  ' + '\n')
+
+        write_post(path, post_content)
+
+        print('gen post suc: {}/{}'.format(cur_post_count, total_post_count))
 
         all_gened_question_ids.add(question_id)
         write_gened_question_id(question_id)
