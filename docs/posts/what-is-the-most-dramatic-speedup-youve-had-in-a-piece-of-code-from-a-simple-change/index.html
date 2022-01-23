@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>您在简单变化中的代码中最戏剧性的加速是什么？ | 知识的阶梯</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="您在简单变化中的代码中最戏剧性的加速是什么？ 回答 1 一个10,000倍的加速。
+我的朋友正在制作一个开放世界的团结游戏，并写了一大吨的程序代代的东西。唯一的问题是，一旦他试图运行它，它变得非常慢。他打电话给我，几乎泪流满面，因为他写的所有真正酷的东西都在运作正常，如他调试所展示，这只是太慢了。
+我看了看它，瞬间困惑。他没有做任何复杂的事情，沿着一些程序生成的地形网顶部的佩林噪音实例化了大量的树木和岩石。
+我们停止了播放模式，几乎没有运行，我看了几分钟的代码。一切似乎是对的，然后我意识到他的缓冲区已经弄清楚球员在球员周围产生了多少是错误的，因为他在地形块距离而不是米的情况下产生它，就像他想象的那样。基本上，他的生成了地形100倍，而不是他需要它。每个地形块约100米。
+我删除了三个或四个zeroes，以便当播放器大约10个地形块而不是1000时，对象只会生成。然后我点击了播放，他只是坐在绝对的惊奇，因为一切都加载在毫秒内。
+通过删除几个零，我从技术上得到了10,000倍的加速。这种优化可能永远不会发生在我身上，但它是我生命中最满意的经历之一。
+回答 2 写入慢Python代码的一个非常简单但非明显的方法是通过字符串连接。相信它与否，这是一个n ^ 2操作：">
+    <meta name="generator" content="Hugo 0.92.0" />
+    
+    
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+    
+    
+    
+      
+
+    
+
+    
+    
+    <meta property="og:title" content="您在简单变化中的代码中最戏剧性的加速是什么？" />
+<meta property="og:description" content="您在简单变化中的代码中最戏剧性的加速是什么？ 回答 1 一个10,000倍的加速。
+我的朋友正在制作一个开放世界的团结游戏，并写了一大吨的程序代代的东西。唯一的问题是，一旦他试图运行它，它变得非常慢。他打电话给我，几乎泪流满面，因为他写的所有真正酷的东西都在运作正常，如他调试所展示，这只是太慢了。
+我看了看它，瞬间困惑。他没有做任何复杂的事情，沿着一些程序生成的地形网顶部的佩林噪音实例化了大量的树木和岩石。
+我们停止了播放模式，几乎没有运行，我看了几分钟的代码。一切似乎是对的，然后我意识到他的缓冲区已经弄清楚球员在球员周围产生了多少是错误的，因为他在地形块距离而不是米的情况下产生它，就像他想象的那样。基本上，他的生成了地形100倍，而不是他需要它。每个地形块约100米。
+我删除了三个或四个zeroes，以便当播放器大约10个地形块而不是1000时，对象只会生成。然后我点击了播放，他只是坐在绝对的惊奇，因为一切都加载在毫秒内。
+通过删除几个零，我从技术上得到了10,000倍的加速。这种优化可能永远不会发生在我身上，但它是我生命中最满意的经历之一。
+回答 2 写入慢Python代码的一个非常简单但非明显的方法是通过字符串连接。相信它与否，这是一个n ^ 2操作：" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://xiangqingw.github.io/posts/what-is-the-most-dramatic-speedup-youve-had-in-a-piece-of-code-from-a-simple-change/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-01-23T22:08:18+08:00" />
+<meta property="article:modified_time" content="2022-01-23T22:08:18+08:00" />
+
+<meta itemprop="name" content="您在简单变化中的代码中最戏剧性的加速是什么？">
+<meta itemprop="description" content="您在简单变化中的代码中最戏剧性的加速是什么？ 回答 1 一个10,000倍的加速。
+我的朋友正在制作一个开放世界的团结游戏，并写了一大吨的程序代代的东西。唯一的问题是，一旦他试图运行它，它变得非常慢。他打电话给我，几乎泪流满面，因为他写的所有真正酷的东西都在运作正常，如他调试所展示，这只是太慢了。
+我看了看它，瞬间困惑。他没有做任何复杂的事情，沿着一些程序生成的地形网顶部的佩林噪音实例化了大量的树木和岩石。
+我们停止了播放模式，几乎没有运行，我看了几分钟的代码。一切似乎是对的，然后我意识到他的缓冲区已经弄清楚球员在球员周围产生了多少是错误的，因为他在地形块距离而不是米的情况下产生它，就像他想象的那样。基本上，他的生成了地形100倍，而不是他需要它。每个地形块约100米。
+我删除了三个或四个zeroes，以便当播放器大约10个地形块而不是1000时，对象只会生成。然后我点击了播放，他只是坐在绝对的惊奇，因为一切都加载在毫秒内。
+通过删除几个零，我从技术上得到了10,000倍的加速。这种优化可能永远不会发生在我身上，但它是我生命中最满意的经历之一。
+回答 2 写入慢Python代码的一个非常简单但非明显的方法是通过字符串连接。相信它与否，这是一个n ^ 2操作："><meta itemprop="datePublished" content="2022-01-23T22:08:18+08:00" />
+<meta itemprop="dateModified" content="2022-01-23T22:08:18+08:00" />
+<meta itemprop="wordCount" content="14">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="您在简单变化中的代码中最戏剧性的加速是什么？"/>
+<meta name="twitter:description" content="您在简单变化中的代码中最戏剧性的加速是什么？ 回答 1 一个10,000倍的加速。
+我的朋友正在制作一个开放世界的团结游戏，并写了一大吨的程序代代的东西。唯一的问题是，一旦他试图运行它，它变得非常慢。他打电话给我，几乎泪流满面，因为他写的所有真正酷的东西都在运作正常，如他调试所展示，这只是太慢了。
+我看了看它，瞬间困惑。他没有做任何复杂的事情，沿着一些程序生成的地形网顶部的佩林噪音实例化了大量的树木和岩石。
+我们停止了播放模式，几乎没有运行，我看了几分钟的代码。一切似乎是对的，然后我意识到他的缓冲区已经弄清楚球员在球员周围产生了多少是错误的，因为他在地形块距离而不是米的情况下产生它，就像他想象的那样。基本上，他的生成了地形100倍，而不是他需要它。每个地形块约100米。
+我删除了三个或四个zeroes，以便当播放器大约10个地形块而不是1000时，对象只会生成。然后我点击了播放，他只是坐在绝对的惊奇，因为一切都加载在毫秒内。
+通过删除几个零，我从技术上得到了10,000倍的加速。这种优化可能永远不会发生在我身上，但它是我生命中最满意的经历之一。
+回答 2 写入慢Python代码的一个非常简单但非明显的方法是通过字符串连接。相信它与否，这是一个n ^ 2操作："/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-3W09QM57NF"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-3W09QM57NF', { 'anonymize_ip': false });
+}
+</script>
+
+
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        知识的阶梯
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      
+<div class="ananke-socials">
+  
+</div>
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside>
+      
+
+
+
+
+
+
+
+
+
+
+  <div id="sharing" class="mt3 ananke-socials">
+    
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">您在简单变化中的代码中最戏剧性的加速是什么？</h1>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2022-01-23T22:08:18+08:00">January 23, 2022</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><h2 id="您在简单变化中的代码中最戏剧性的加速是什么">您在简单变化中的代码中最戏剧性的加速是什么？</h2>
+<h3 id="回答-1">回答 1</h3>
+<p>一个10,000倍的加速。<br>
+我的朋友正在制作一个开放世界的团结游戏，并写了一大吨的程序代代的东西。唯一的问题是，一旦他试图运行它，它变得非常慢。他打电话给我，几乎泪流满面，因为他写的所有真正酷的东西都在运作正常，如他调试所展示，这只是太慢了。<br>
+我看了看它，瞬间困惑。他没有做任何复杂的事情，沿着一些程序生成的地形网顶部的佩林噪音实例化了大量的树木和岩石。<br>
+我们停止了播放模式，几乎没有运行，我看了几分钟的代码。一切似乎是对的，然后我意识到他的缓冲区已经弄清楚球员在球员周围产生了多少是错误的，因为他在地形块距离而不是米的情况下产生它，就像他想象的那样。基本上，他的生成了地形100倍，而不是他需要它。每个地形块约100米。<br>
+我删除了三个或四个zeroes，以便当播放器大约10个地形块而不是1000时，对象只会生成。然后我点击了播放，他只是坐在绝对的惊奇，因为一切都加载在毫秒内。<br>
+通过删除几个零，我从技术上得到了10,000倍的加速。这种优化可能永远不会发生在我身上，但它是我生命中最满意的经历之一。</p>
+<h3 id="回答-2">回答 2</h3>
+<p>写入慢Python代码的一个非常简单但非明显的方法是通过字符串连接。相信它与否，这是一个n ^ 2操作：</p>
+<!-- raw HTML omitted -->
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://xiangqingw.github.io/" >
+    &copy;  知识的阶梯 2022 
+  </a>
+    <div>
+<div class="ananke-socials">
+  
+</div></div>
+  </div>
+</footer>
+
+  </body>
+</html>

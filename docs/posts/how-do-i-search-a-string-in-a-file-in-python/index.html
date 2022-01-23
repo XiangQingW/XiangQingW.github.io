@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>如何在Python中搜索一个字符串？ | 知识的阶梯</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="如何在Python中搜索一个字符串？ 回答 1 您需要查看以下方法
+[代码]
+打开（）
+file.close（）
+用open（）如
+file.read（）
+file.readlines（）
+file.write（）
+[/代码]
+一旦您获得了打开和关闭和读取文件的挂起，那么您就在对象类型搜索中执行普通字符串
+回答 2 这是一个可能导致Python编程的基础知识，进入一些基本算法分析，并包括Python中的上下文管理器的主题。
+虽然你可能只是想要答案，但你会发现它和无数的其他实际编程相关的答案，在stackoverflow上。快乐编码！
+回答 3 打印（你是什么？
+您可以使用RAW_INPUT（）或输入（）命令在Python中取出。
+打印Hello消息的程序：
+打印（你的名字是什么？）
+name = input（）
+打印（你好％s！你好吗？％名称）
+打印数字平方的程序：
+num = int（输入（输入数字））
+打印（数字的平方是：，num ** 2）
+回答 4 嘿！
+因此，有两种方式可以在其中反转用户输入的字符串。">
+    <meta name="generator" content="Hugo 0.92.0" />
+    
+    
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+    
+    
+    
+      
+
+    
+
+    
+    
+    <meta property="og:title" content="如何在Python中搜索一个字符串？" />
+<meta property="og:description" content="如何在Python中搜索一个字符串？ 回答 1 您需要查看以下方法
+[代码]
+打开（）
+file.close（）
+用open（）如
+file.read（）
+file.readlines（）
+file.write（）
+[/代码]
+一旦您获得了打开和关闭和读取文件的挂起，那么您就在对象类型搜索中执行普通字符串
+回答 2 这是一个可能导致Python编程的基础知识，进入一些基本算法分析，并包括Python中的上下文管理器的主题。
+虽然你可能只是想要答案，但你会发现它和无数的其他实际编程相关的答案，在stackoverflow上。快乐编码！
+回答 3 打印（你是什么？
+您可以使用RAW_INPUT（）或输入（）命令在Python中取出。
+打印Hello消息的程序：
+打印（你的名字是什么？）
+name = input（）
+打印（你好％s！你好吗？％名称）
+打印数字平方的程序：
+num = int（输入（输入数字））
+打印（数字的平方是：，num ** 2）
+回答 4 嘿！
+因此，有两种方式可以在其中反转用户输入的字符串。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://xiangqingw.github.io/posts/how-do-i-search-a-string-in-a-file-in-python/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-01-23T22:08:22+08:00" />
+<meta property="article:modified_time" content="2022-01-23T22:08:22+08:00" />
+
+<meta itemprop="name" content="如何在Python中搜索一个字符串？">
+<meta itemprop="description" content="如何在Python中搜索一个字符串？ 回答 1 您需要查看以下方法
+[代码]
+打开（）
+file.close（）
+用open（）如
+file.read（）
+file.readlines（）
+file.write（）
+[/代码]
+一旦您获得了打开和关闭和读取文件的挂起，那么您就在对象类型搜索中执行普通字符串
+回答 2 这是一个可能导致Python编程的基础知识，进入一些基本算法分析，并包括Python中的上下文管理器的主题。
+虽然你可能只是想要答案，但你会发现它和无数的其他实际编程相关的答案，在stackoverflow上。快乐编码！
+回答 3 打印（你是什么？
+您可以使用RAW_INPUT（）或输入（）命令在Python中取出。
+打印Hello消息的程序：
+打印（你的名字是什么？）
+name = input（）
+打印（你好％s！你好吗？％名称）
+打印数字平方的程序：
+num = int（输入（输入数字））
+打印（数字的平方是：，num ** 2）
+回答 4 嘿！
+因此，有两种方式可以在其中反转用户输入的字符串。"><meta itemprop="datePublished" content="2022-01-23T22:08:22+08:00" />
+<meta itemprop="dateModified" content="2022-01-23T22:08:22+08:00" />
+<meta itemprop="wordCount" content="38">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="如何在Python中搜索一个字符串？"/>
+<meta name="twitter:description" content="如何在Python中搜索一个字符串？ 回答 1 您需要查看以下方法
+[代码]
+打开（）
+file.close（）
+用open（）如
+file.read（）
+file.readlines（）
+file.write（）
+[/代码]
+一旦您获得了打开和关闭和读取文件的挂起，那么您就在对象类型搜索中执行普通字符串
+回答 2 这是一个可能导致Python编程的基础知识，进入一些基本算法分析，并包括Python中的上下文管理器的主题。
+虽然你可能只是想要答案，但你会发现它和无数的其他实际编程相关的答案，在stackoverflow上。快乐编码！
+回答 3 打印（你是什么？
+您可以使用RAW_INPUT（）或输入（）命令在Python中取出。
+打印Hello消息的程序：
+打印（你的名字是什么？）
+name = input（）
+打印（你好％s！你好吗？％名称）
+打印数字平方的程序：
+num = int（输入（输入数字））
+打印（数字的平方是：，num ** 2）
+回答 4 嘿！
+因此，有两种方式可以在其中反转用户输入的字符串。"/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-3W09QM57NF"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-3W09QM57NF', { 'anonymize_ip': false });
+}
+</script>
+
+
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        知识的阶梯
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      
+<div class="ananke-socials">
+  
+</div>
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside>
+      
+
+
+
+
+
+
+
+
+
+
+  <div id="sharing" class="mt3 ananke-socials">
+    
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">如何在Python中搜索一个字符串？</h1>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2022-01-23T22:08:22+08:00">January 23, 2022</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><h2 id="如何在python中搜索一个字符串">如何在Python中搜索一个字符串？</h2>
+<h3 id="回答-1">回答 1</h3>
+<p>您需要查看以下方法<br>
+[代码]<br>
+打开（）<br>
+file.close（）<br>
+用open（）如<br>
+file.read（）<br>
+file.readlines（）<br>
+file.write（）<br>
+[/代码]<br>
+一旦您获得了打开和关闭和读取文件的挂起，那么您就在对象类型搜索中执行普通字符串</p>
+<h3 id="回答-2">回答 2</h3>
+<p>这是一个可能导致Python编程的基础知识，进入一些基本算法分析，并包括Python中的上下文管理器的主题。<br>
+虽然你可能只是想要答案，但你会发现它和无数的其他实际编程相关的答案，在stackoverflow上。快乐编码！</p>
+<h3 id="回答-3">回答 3</h3>
+<p>打印（你是什么？<br>
+您可以使用RAW_INPUT（）或输入（）命令在Python中取出。<br>
+打印Hello消息的程序：<br>
+打印（你的名字是什么？）<br>
+name = input（）<br>
+打印（你好％s！你好吗？％名称）<br>
+打印数字平方的程序：<br>
+num = int（输入（输入数字））<br>
+打印（数字的平方是：，num ** 2）</p>
+<h3 id="回答-4">回答 4</h3>
+<p>嘿！<br>
+因此，有两种方式可以在其中反转用户输入的字符串。</p>
+<!-- raw HTML omitted -->
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://xiangqingw.github.io/" >
+    &copy;  知识的阶梯 2022 
+  </a>
+    <div>
+<div class="ananke-socials">
+  
+</div></div>
+  </div>
+</footer>
+
+  </body>
+</html>

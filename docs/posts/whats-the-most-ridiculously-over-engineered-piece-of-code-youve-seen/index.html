@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>什么是你看到的最荒谬过度设计的代码？ | 知识的阶梯</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="什么是你看到的最荒谬过度设计的代码？ 回答 1 当我19岁的时候，我写了一个图书馆，哦，大约500行代码，并花了我大约3或4周才能写作。有趣的是，它的唯一工作是解析字符串日期时间，并将其转换为Oracle PL / SQL中的SQL时间戳。
+我的代码遗憾的是，在接下来的2或3个月内很受欢迎，我们在它周围写下了整个包，转换回一个字符串，处理多种格式，处理不同的时区，UNIX时间等。
+在我离开我的位置之前大约一个月，&hellip;&hellip;
+回答 2 这发生了几年前的时候了。这是一个严重问题的天才解决方案。它不是过度的工程;实际上，工程的方面没有进入解决方案。
+问题：
+在遗留代码上运行的桌面应用程序。点击按钮X会触发对服务器的调用，获取数百MB的文本数据，解析它并在UI上渲染。客户抱怨申请非常缓慢，显然。
+解决方案：
+计算用户鼠标指针和按钮之间的距离。如果用户正在接近按钮X，请触发服务器并开始下载in
+这发生了几年前的时候了。这是一个严重问题的天才解决方案。它不是过度的工程;实际上，工程的方面没有进入解决方案。
+问题：
+在遗留代码上运行的桌面应用程序。点击按钮X会触发对服务器的调用，获取数百MB的文本数据，解析它并在UI上渲染。客户抱怨申请非常缓慢，显然。
+解决方案：
+计算用户鼠标指针和按钮之间的距离。如果用户正在接近按钮X，请在用户点击按钮之前启动服务器并开始下载数据，以便在用户实际单击时，已经下载了数据更快地下载数据。啊哈！
+他们得到了批准并实施了它（是的，他们实际编码了上升），该团队意识到疯狂地将鼠标指针移动到屏幕上会触发对服务器的多个呼叫，从而崩溃了应用程序。
+ facepalm *  回答 3 我曾经遇到过一些代码返回数组中的元素数。我还没有访问它，所以我会写同等的代码&hellip;&hellip;">
+    <meta name="generator" content="Hugo 0.92.0" />
+    
+    
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+    
+    
+    
+      
+
+    
+
+    
+    
+    <meta property="og:title" content="什么是你看到的最荒谬过度设计的代码？" />
+<meta property="og:description" content="什么是你看到的最荒谬过度设计的代码？ 回答 1 当我19岁的时候，我写了一个图书馆，哦，大约500行代码，并花了我大约3或4周才能写作。有趣的是，它的唯一工作是解析字符串日期时间，并将其转换为Oracle PL / SQL中的SQL时间戳。
+我的代码遗憾的是，在接下来的2或3个月内很受欢迎，我们在它周围写下了整个包，转换回一个字符串，处理多种格式，处理不同的时区，UNIX时间等。
+在我离开我的位置之前大约一个月，&hellip;&hellip;
+回答 2 这发生了几年前的时候了。这是一个严重问题的天才解决方案。它不是过度的工程;实际上，工程的方面没有进入解决方案。
+问题：
+在遗留代码上运行的桌面应用程序。点击按钮X会触发对服务器的调用，获取数百MB的文本数据，解析它并在UI上渲染。客户抱怨申请非常缓慢，显然。
+解决方案：
+计算用户鼠标指针和按钮之间的距离。如果用户正在接近按钮X，请触发服务器并开始下载in
+这发生了几年前的时候了。这是一个严重问题的天才解决方案。它不是过度的工程;实际上，工程的方面没有进入解决方案。
+问题：
+在遗留代码上运行的桌面应用程序。点击按钮X会触发对服务器的调用，获取数百MB的文本数据，解析它并在UI上渲染。客户抱怨申请非常缓慢，显然。
+解决方案：
+计算用户鼠标指针和按钮之间的距离。如果用户正在接近按钮X，请在用户点击按钮之前启动服务器并开始下载数据，以便在用户实际单击时，已经下载了数据更快地下载数据。啊哈！
+他们得到了批准并实施了它（是的，他们实际编码了上升），该团队意识到疯狂地将鼠标指针移动到屏幕上会触发对服务器的多个呼叫，从而崩溃了应用程序。
+ facepalm *  回答 3 我曾经遇到过一些代码返回数组中的元素数。我还没有访问它，所以我会写同等的代码&hellip;&hellip;" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://xiangqingw.github.io/posts/whats-the-most-ridiculously-over-engineered-piece-of-code-youve-seen/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-01-23T22:08:16+08:00" />
+<meta property="article:modified_time" content="2022-01-23T22:08:16+08:00" />
+
+<meta itemprop="name" content="什么是你看到的最荒谬过度设计的代码？">
+<meta itemprop="description" content="什么是你看到的最荒谬过度设计的代码？ 回答 1 当我19岁的时候，我写了一个图书馆，哦，大约500行代码，并花了我大约3或4周才能写作。有趣的是，它的唯一工作是解析字符串日期时间，并将其转换为Oracle PL / SQL中的SQL时间戳。
+我的代码遗憾的是，在接下来的2或3个月内很受欢迎，我们在它周围写下了整个包，转换回一个字符串，处理多种格式，处理不同的时区，UNIX时间等。
+在我离开我的位置之前大约一个月，&hellip;&hellip;
+回答 2 这发生了几年前的时候了。这是一个严重问题的天才解决方案。它不是过度的工程;实际上，工程的方面没有进入解决方案。
+问题：
+在遗留代码上运行的桌面应用程序。点击按钮X会触发对服务器的调用，获取数百MB的文本数据，解析它并在UI上渲染。客户抱怨申请非常缓慢，显然。
+解决方案：
+计算用户鼠标指针和按钮之间的距离。如果用户正在接近按钮X，请触发服务器并开始下载in
+这发生了几年前的时候了。这是一个严重问题的天才解决方案。它不是过度的工程;实际上，工程的方面没有进入解决方案。
+问题：
+在遗留代码上运行的桌面应用程序。点击按钮X会触发对服务器的调用，获取数百MB的文本数据，解析它并在UI上渲染。客户抱怨申请非常缓慢，显然。
+解决方案：
+计算用户鼠标指针和按钮之间的距离。如果用户正在接近按钮X，请在用户点击按钮之前启动服务器并开始下载数据，以便在用户实际单击时，已经下载了数据更快地下载数据。啊哈！
+他们得到了批准并实施了它（是的，他们实际编码了上升），该团队意识到疯狂地将鼠标指针移动到屏幕上会触发对服务器的多个呼叫，从而崩溃了应用程序。
+ facepalm *  回答 3 我曾经遇到过一些代码返回数组中的元素数。我还没有访问它，所以我会写同等的代码&hellip;&hellip;"><meta itemprop="datePublished" content="2022-01-23T22:08:16+08:00" />
+<meta itemprop="dateModified" content="2022-01-23T22:08:16+08:00" />
+<meta itemprop="wordCount" content="27">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="什么是你看到的最荒谬过度设计的代码？"/>
+<meta name="twitter:description" content="什么是你看到的最荒谬过度设计的代码？ 回答 1 当我19岁的时候，我写了一个图书馆，哦，大约500行代码，并花了我大约3或4周才能写作。有趣的是，它的唯一工作是解析字符串日期时间，并将其转换为Oracle PL / SQL中的SQL时间戳。
+我的代码遗憾的是，在接下来的2或3个月内很受欢迎，我们在它周围写下了整个包，转换回一个字符串，处理多种格式，处理不同的时区，UNIX时间等。
+在我离开我的位置之前大约一个月，&hellip;&hellip;
+回答 2 这发生了几年前的时候了。这是一个严重问题的天才解决方案。它不是过度的工程;实际上，工程的方面没有进入解决方案。
+问题：
+在遗留代码上运行的桌面应用程序。点击按钮X会触发对服务器的调用，获取数百MB的文本数据，解析它并在UI上渲染。客户抱怨申请非常缓慢，显然。
+解决方案：
+计算用户鼠标指针和按钮之间的距离。如果用户正在接近按钮X，请触发服务器并开始下载in
+这发生了几年前的时候了。这是一个严重问题的天才解决方案。它不是过度的工程;实际上，工程的方面没有进入解决方案。
+问题：
+在遗留代码上运行的桌面应用程序。点击按钮X会触发对服务器的调用，获取数百MB的文本数据，解析它并在UI上渲染。客户抱怨申请非常缓慢，显然。
+解决方案：
+计算用户鼠标指针和按钮之间的距离。如果用户正在接近按钮X，请在用户点击按钮之前启动服务器并开始下载数据，以便在用户实际单击时，已经下载了数据更快地下载数据。啊哈！
+他们得到了批准并实施了它（是的，他们实际编码了上升），该团队意识到疯狂地将鼠标指针移动到屏幕上会触发对服务器的多个呼叫，从而崩溃了应用程序。
+ facepalm *  回答 3 我曾经遇到过一些代码返回数组中的元素数。我还没有访问它，所以我会写同等的代码&hellip;&hellip;"/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-3W09QM57NF"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-3W09QM57NF', { 'anonymize_ip': false });
+}
+</script>
+
+
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        知识的阶梯
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      
+<div class="ananke-socials">
+  
+</div>
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside>
+      
+
+
+
+
+
+
+
+
+
+
+  <div id="sharing" class="mt3 ananke-socials">
+    
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">什么是你看到的最荒谬过度设计的代码？</h1>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2022-01-23T22:08:16+08:00">January 23, 2022</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><h2 id="什么是你看到的最荒谬过度设计的代码">什么是你看到的最荒谬过度设计的代码？</h2>
+<h3 id="回答-1">回答 1</h3>
+<p>当我19岁的时候，我写了一个图书馆，哦，大约500行代码，并花了我大约3或4周才能写作。有趣的是，它的唯一工作是解析字符串日期时间，并将其转换为Oracle PL / SQL中的SQL时间戳。<br>
+我的代码遗憾的是，在接下来的2或3个月内很受欢迎，我们在它周围写下了整个包，转换回一个字符串，处理多种格式，处理不同的时区，UNIX时间等。<br>
+在我离开我的位置之前大约一个月，&hellip;&hellip;</p>
+<h3 id="回答-2">回答 2</h3>
+<p>这发生了几年前的时候了。这是一个严重问题的天才解决方案。它不是过度的工程;实际上，工程的方面没有进入解决方案。<br>
+问题：<br>
+在遗留代码上运行的桌面应用程序。点击按钮X会触发对服务器的调用，获取数百MB的文本数据，解析它并在UI上渲染。客户抱怨申请非常缓慢，显然。<br>
+解决方案：<br>
+计算用户鼠标指针和按钮之间的距离。如果用户正在接近按钮X，请触发服务器并开始下载in<br>
+这发生了几年前的时候了。这是一个严重问题的天才解决方案。它不是过度的工程;实际上，工程的方面没有进入解决方案。<br>
+问题：<br>
+在遗留代码上运行的桌面应用程序。点击按钮X会触发对服务器的调用，获取数百MB的文本数据，解析它并在UI上渲染。客户抱怨申请非常缓慢，显然。<br>
+解决方案：<br>
+计算用户鼠标指针和按钮之间的距离。如果用户正在接近按钮X，请在用户点击按钮之前启动服务器并开始下载数据，以便在用户实际单击时，已经下载了数据更快地下载数据。啊哈！<br>
+他们得到了批准并实施了它（是的，他们实际编码了上升），该团队意识到疯狂地将鼠标指针移动到屏幕上会触发对服务器的多个呼叫，从而崩溃了应用程序。</p>
+<ul>
+<li>facepalm *</li>
+</ul>
+<h3 id="回答-3">回答 3</h3>
+<p>我曾经遇到过一些代码返回数组中的元素数。我还没有访问它，所以我会写同等的代码&hellip;&hellip;</p>
+<!-- raw HTML omitted -->
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://xiangqingw.github.io/" >
+    &copy;  知识的阶梯 2022 
+  </a>
+    <div>
+<div class="ananke-socials">
+  
+</div></div>
+  </div>
+</footer>
+
+  </body>
+</html>

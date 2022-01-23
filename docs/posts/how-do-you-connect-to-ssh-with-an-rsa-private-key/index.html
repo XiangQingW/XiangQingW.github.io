@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>如何使用RSA私钥连接到SSH？ | 知识的阶梯</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="如何使用RSA私钥连接到SSH？ 回答 1 您只需使用私钥代替密码。使用SSH或OpenSSH的CLI，您只需使用-i命令行参数和文件的路径;通常SSH客户端位于GUI中，因此您使用GUI选择器选择密钥文件（可能需要转换为不同的格式; SSH，OpenSSH和Putty是三种主要格式）
+回答 2 私钥只是一个数字，随机挑选。对私钥的所有权和控制是用户控制与相应比特币地址相关联的所有资金的根源。您可以查看我的（生物）如果您需要，请帮助私钥用于通过证明交易中使用的资金所有权来创造花费比特币所需的签名。私钥必须始终保持秘密，因为向第三方展示它相当于让他们控制通过该密钥保护的比特币。私钥还必须备份并保护免于意外损失，因为如果它丢失，则无法恢复，并且由它所保护的资金也是永远丢失的。
+回答 3 安全shell（SSH）系统可以配置为允许使用不同类型的身份验证。通常的身份验证要求您使用密码进行身份验证，但您也可以使用公钥加密进行身份验证。您通过生成SSH密钥对来执行此操作，由公钥和私钥组成。您将私钥保留在您自己的系统上，或在您的连接系统上，您将公钥复制到您的系统连接到。 （请注意，这些密钥仅用于身份验证目的，并在建立连接后播放任何角色。）
+N.B .:以下逐步方向用于UNIX / Linux系统。
+要利用公钥身份验证，首先在自己的系统上生成密钥对，命令：ssh-keygen -t dsathis在主目录，id_dsa和id_dsa.pub下的.ssh目录中生成一对文件。 id_dsa包含私钥，而id_dsa.pub包含公钥。 （键使用数字签名算法。）将公钥文件复制到目标系统，例如使用以下命令：scp〜/ .ssh / id_dsa.pub user@targetsystem.example.com：〜（youll必须使用您的密码。）
+现在将SSH作为正常运行，并使用以下命令：cat id_dsa.pub &raquo;〜/ .ssh / authorized_keysthis将文件（公钥）的内容附加到sshs授权_keys文件中，其中包含所有公共列表可以对此用户帐户进行身份验证的键。
+现在退出并SSH回到目标系统。如果您正确完成了这一点，则不会提示您输入密码，因为公钥系统将对您进行身份验证。 （如果它不起作用，您可能需要使用密码登录，然后使用命令Chmod 600〜/ .ssh /授权程序更改授权_keys文件的权限。或者您的服务器管理员可能会在不使用该系统上配置SSH公钥身份验证。）
+生成密钥对时可以使用其他选项;您可以使用不同的公钥算法和/或密钥长度，并且您还可以在公钥上设置本地密码，您将在每次要使用它时将其键解锁，作为添加的安全措施。由于这可能是笨重的，所以称为SSH代理的程序也存在，这将缓存您的密钥并将它们呈现给您代表访问的服务器，因此您只需进入本地密码“一次。
+还有一种其他类型的SSH密钥也使用。每个服务器都有自己的公钥/私钥对，并且您访问的所有服务器的公钥都存储在您的.ssh目录中的文件中已知的文件中。连接到服务器时，SSH检查是否有服务器公钥;如果没有，它会显示一个提示，允许您验证要连接到该服务器，然后如果继续连接，则将公钥存储在已知_hosts文件中。如果您拥有公钥，但它无法成功解密与该服务器私钥加密的服务器发送的挑战（例如，如果服务器密钥已更改），则SSH显示错误消息，并不允许您连接，如这可能是篡改连接或服务器的人的标志。 （它也可能是良性的;例如，如果已重新安装服务器操作系统，则服务器SSH键可能已更改。）要解决此问题，您可以编辑已知的_Hosts文件并删除错误的公钥（通常会删除错误消息）指出，可以找到错误键的文件的行），并允许服务器在下次连接到它时向您发送新键。
+回答 4 公共关键密码学的整个基础是基于您提出的问题。它只是因为从公钥的私钥的提取是计算地不可行的，即公钥密码系统是安全的，因此使用。
+让我通过RSA密码系统演示这一点。
+这里关键是（n，p，q，a，b）（n，p，q，a，b）。
+公钥是（n，b）（n，b），私钥是（p，q，a）（p，q，a）。
+n = p * qn = p * q {其中p和q两个是大的primes}。
+AA选自1,2，&hellip;&hellip;，φ（n）-11,2，&hellip;.，φ（n）-1。这里φ（n）φ（n）是欧拉的总函数。
+计算BB，使得AB≡1Mod（φ（n））ab≡1mod（φ（n））。
+现在你被赋予公钥
+公共关键密码学的整个基础是基于您提出的问题。它只是因为从公钥的私钥的提取是计算地不可行的，即公钥密码系统是安全的，因此使用。
+让我通过RSA密码系统演示这一点。
+这里关键是（n，p，q，a，b）（n，p，q，a，b）。
+公钥是（n，b）（n，b），私钥是（p，q，a）（p，q，a）。
+n = p * qn = p * q {其中p和q两个是大的primes}。">
+    <meta name="generator" content="Hugo 0.92.0" />
+    
+    
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+    
+    
+    
+      
+
+    
+
+    
+    
+    <meta property="og:title" content="如何使用RSA私钥连接到SSH？" />
+<meta property="og:description" content="如何使用RSA私钥连接到SSH？ 回答 1 您只需使用私钥代替密码。使用SSH或OpenSSH的CLI，您只需使用-i命令行参数和文件的路径;通常SSH客户端位于GUI中，因此您使用GUI选择器选择密钥文件（可能需要转换为不同的格式; SSH，OpenSSH和Putty是三种主要格式）
+回答 2 私钥只是一个数字，随机挑选。对私钥的所有权和控制是用户控制与相应比特币地址相关联的所有资金的根源。您可以查看我的（生物）如果您需要，请帮助私钥用于通过证明交易中使用的资金所有权来创造花费比特币所需的签名。私钥必须始终保持秘密，因为向第三方展示它相当于让他们控制通过该密钥保护的比特币。私钥还必须备份并保护免于意外损失，因为如果它丢失，则无法恢复，并且由它所保护的资金也是永远丢失的。
+回答 3 安全shell（SSH）系统可以配置为允许使用不同类型的身份验证。通常的身份验证要求您使用密码进行身份验证，但您也可以使用公钥加密进行身份验证。您通过生成SSH密钥对来执行此操作，由公钥和私钥组成。您将私钥保留在您自己的系统上，或在您的连接系统上，您将公钥复制到您的系统连接到。 （请注意，这些密钥仅用于身份验证目的，并在建立连接后播放任何角色。）
+N.B .:以下逐步方向用于UNIX / Linux系统。
+要利用公钥身份验证，首先在自己的系统上生成密钥对，命令：ssh-keygen -t dsathis在主目录，id_dsa和id_dsa.pub下的.ssh目录中生成一对文件。 id_dsa包含私钥，而id_dsa.pub包含公钥。 （键使用数字签名算法。）将公钥文件复制到目标系统，例如使用以下命令：scp〜/ .ssh / id_dsa.pub user@targetsystem.example.com：〜（youll必须使用您的密码。）
+现在将SSH作为正常运行，并使用以下命令：cat id_dsa.pub &raquo;〜/ .ssh / authorized_keysthis将文件（公钥）的内容附加到sshs授权_keys文件中，其中包含所有公共列表可以对此用户帐户进行身份验证的键。
+现在退出并SSH回到目标系统。如果您正确完成了这一点，则不会提示您输入密码，因为公钥系统将对您进行身份验证。 （如果它不起作用，您可能需要使用密码登录，然后使用命令Chmod 600〜/ .ssh /授权程序更改授权_keys文件的权限。或者您的服务器管理员可能会在不使用该系统上配置SSH公钥身份验证。）
+生成密钥对时可以使用其他选项;您可以使用不同的公钥算法和/或密钥长度，并且您还可以在公钥上设置本地密码，您将在每次要使用它时将其键解锁，作为添加的安全措施。由于这可能是笨重的，所以称为SSH代理的程序也存在，这将缓存您的密钥并将它们呈现给您代表访问的服务器，因此您只需进入本地密码“一次。
+还有一种其他类型的SSH密钥也使用。每个服务器都有自己的公钥/私钥对，并且您访问的所有服务器的公钥都存储在您的.ssh目录中的文件中已知的文件中。连接到服务器时，SSH检查是否有服务器公钥;如果没有，它会显示一个提示，允许您验证要连接到该服务器，然后如果继续连接，则将公钥存储在已知_hosts文件中。如果您拥有公钥，但它无法成功解密与该服务器私钥加密的服务器发送的挑战（例如，如果服务器密钥已更改），则SSH显示错误消息，并不允许您连接，如这可能是篡改连接或服务器的人的标志。 （它也可能是良性的;例如，如果已重新安装服务器操作系统，则服务器SSH键可能已更改。）要解决此问题，您可以编辑已知的_Hosts文件并删除错误的公钥（通常会删除错误消息）指出，可以找到错误键的文件的行），并允许服务器在下次连接到它时向您发送新键。
+回答 4 公共关键密码学的整个基础是基于您提出的问题。它只是因为从公钥的私钥的提取是计算地不可行的，即公钥密码系统是安全的，因此使用。
+让我通过RSA密码系统演示这一点。
+这里关键是（n，p，q，a，b）（n，p，q，a，b）。
+公钥是（n，b）（n，b），私钥是（p，q，a）（p，q，a）。
+n = p * qn = p * q {其中p和q两个是大的primes}。
+AA选自1,2，&hellip;&hellip;，φ（n）-11,2，&hellip;.，φ（n）-1。这里φ（n）φ（n）是欧拉的总函数。
+计算BB，使得AB≡1Mod（φ（n））ab≡1mod（φ（n））。
+现在你被赋予公钥
+公共关键密码学的整个基础是基于您提出的问题。它只是因为从公钥的私钥的提取是计算地不可行的，即公钥密码系统是安全的，因此使用。
+让我通过RSA密码系统演示这一点。
+这里关键是（n，p，q，a，b）（n，p，q，a，b）。
+公钥是（n，b）（n，b），私钥是（p，q，a）（p，q，a）。
+n = p * qn = p * q {其中p和q两个是大的primes}。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://xiangqingw.github.io/posts/how-do-you-connect-to-ssh-with-an-rsa-private-key/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-01-23T22:08:02+08:00" />
+<meta property="article:modified_time" content="2022-01-23T22:08:02+08:00" />
+
+<meta itemprop="name" content="如何使用RSA私钥连接到SSH？">
+<meta itemprop="description" content="如何使用RSA私钥连接到SSH？ 回答 1 您只需使用私钥代替密码。使用SSH或OpenSSH的CLI，您只需使用-i命令行参数和文件的路径;通常SSH客户端位于GUI中，因此您使用GUI选择器选择密钥文件（可能需要转换为不同的格式; SSH，OpenSSH和Putty是三种主要格式）
+回答 2 私钥只是一个数字，随机挑选。对私钥的所有权和控制是用户控制与相应比特币地址相关联的所有资金的根源。您可以查看我的（生物）如果您需要，请帮助私钥用于通过证明交易中使用的资金所有权来创造花费比特币所需的签名。私钥必须始终保持秘密，因为向第三方展示它相当于让他们控制通过该密钥保护的比特币。私钥还必须备份并保护免于意外损失，因为如果它丢失，则无法恢复，并且由它所保护的资金也是永远丢失的。
+回答 3 安全shell（SSH）系统可以配置为允许使用不同类型的身份验证。通常的身份验证要求您使用密码进行身份验证，但您也可以使用公钥加密进行身份验证。您通过生成SSH密钥对来执行此操作，由公钥和私钥组成。您将私钥保留在您自己的系统上，或在您的连接系统上，您将公钥复制到您的系统连接到。 （请注意，这些密钥仅用于身份验证目的，并在建立连接后播放任何角色。）
+N.B .:以下逐步方向用于UNIX / Linux系统。
+要利用公钥身份验证，首先在自己的系统上生成密钥对，命令：ssh-keygen -t dsathis在主目录，id_dsa和id_dsa.pub下的.ssh目录中生成一对文件。 id_dsa包含私钥，而id_dsa.pub包含公钥。 （键使用数字签名算法。）将公钥文件复制到目标系统，例如使用以下命令：scp〜/ .ssh / id_dsa.pub user@targetsystem.example.com：〜（youll必须使用您的密码。）
+现在将SSH作为正常运行，并使用以下命令：cat id_dsa.pub &raquo;〜/ .ssh / authorized_keysthis将文件（公钥）的内容附加到sshs授权_keys文件中，其中包含所有公共列表可以对此用户帐户进行身份验证的键。
+现在退出并SSH回到目标系统。如果您正确完成了这一点，则不会提示您输入密码，因为公钥系统将对您进行身份验证。 （如果它不起作用，您可能需要使用密码登录，然后使用命令Chmod 600〜/ .ssh /授权程序更改授权_keys文件的权限。或者您的服务器管理员可能会在不使用该系统上配置SSH公钥身份验证。）
+生成密钥对时可以使用其他选项;您可以使用不同的公钥算法和/或密钥长度，并且您还可以在公钥上设置本地密码，您将在每次要使用它时将其键解锁，作为添加的安全措施。由于这可能是笨重的，所以称为SSH代理的程序也存在，这将缓存您的密钥并将它们呈现给您代表访问的服务器，因此您只需进入本地密码“一次。
+还有一种其他类型的SSH密钥也使用。每个服务器都有自己的公钥/私钥对，并且您访问的所有服务器的公钥都存储在您的.ssh目录中的文件中已知的文件中。连接到服务器时，SSH检查是否有服务器公钥;如果没有，它会显示一个提示，允许您验证要连接到该服务器，然后如果继续连接，则将公钥存储在已知_hosts文件中。如果您拥有公钥，但它无法成功解密与该服务器私钥加密的服务器发送的挑战（例如，如果服务器密钥已更改），则SSH显示错误消息，并不允许您连接，如这可能是篡改连接或服务器的人的标志。 （它也可能是良性的;例如，如果已重新安装服务器操作系统，则服务器SSH键可能已更改。）要解决此问题，您可以编辑已知的_Hosts文件并删除错误的公钥（通常会删除错误消息）指出，可以找到错误键的文件的行），并允许服务器在下次连接到它时向您发送新键。
+回答 4 公共关键密码学的整个基础是基于您提出的问题。它只是因为从公钥的私钥的提取是计算地不可行的，即公钥密码系统是安全的，因此使用。
+让我通过RSA密码系统演示这一点。
+这里关键是（n，p，q，a，b）（n，p，q，a，b）。
+公钥是（n，b）（n，b），私钥是（p，q，a）（p，q，a）。
+n = p * qn = p * q {其中p和q两个是大的primes}。
+AA选自1,2，&hellip;&hellip;，φ（n）-11,2，&hellip;.，φ（n）-1。这里φ（n）φ（n）是欧拉的总函数。
+计算BB，使得AB≡1Mod（φ（n））ab≡1mod（φ（n））。
+现在你被赋予公钥
+公共关键密码学的整个基础是基于您提出的问题。它只是因为从公钥的私钥的提取是计算地不可行的，即公钥密码系统是安全的，因此使用。
+让我通过RSA密码系统演示这一点。
+这里关键是（n，p，q，a，b）（n，p，q，a，b）。
+公钥是（n，b）（n，b），私钥是（p，q，a）（p，q，a）。
+n = p * qn = p * q {其中p和q两个是大的primes}。"><meta itemprop="datePublished" content="2022-01-23T22:08:02+08:00" />
+<meta itemprop="dateModified" content="2022-01-23T22:08:02+08:00" />
+<meta itemprop="wordCount" content="431">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="如何使用RSA私钥连接到SSH？"/>
+<meta name="twitter:description" content="如何使用RSA私钥连接到SSH？ 回答 1 您只需使用私钥代替密码。使用SSH或OpenSSH的CLI，您只需使用-i命令行参数和文件的路径;通常SSH客户端位于GUI中，因此您使用GUI选择器选择密钥文件（可能需要转换为不同的格式; SSH，OpenSSH和Putty是三种主要格式）
+回答 2 私钥只是一个数字，随机挑选。对私钥的所有权和控制是用户控制与相应比特币地址相关联的所有资金的根源。您可以查看我的（生物）如果您需要，请帮助私钥用于通过证明交易中使用的资金所有权来创造花费比特币所需的签名。私钥必须始终保持秘密，因为向第三方展示它相当于让他们控制通过该密钥保护的比特币。私钥还必须备份并保护免于意外损失，因为如果它丢失，则无法恢复，并且由它所保护的资金也是永远丢失的。
+回答 3 安全shell（SSH）系统可以配置为允许使用不同类型的身份验证。通常的身份验证要求您使用密码进行身份验证，但您也可以使用公钥加密进行身份验证。您通过生成SSH密钥对来执行此操作，由公钥和私钥组成。您将私钥保留在您自己的系统上，或在您的连接系统上，您将公钥复制到您的系统连接到。 （请注意，这些密钥仅用于身份验证目的，并在建立连接后播放任何角色。）
+N.B .:以下逐步方向用于UNIX / Linux系统。
+要利用公钥身份验证，首先在自己的系统上生成密钥对，命令：ssh-keygen -t dsathis在主目录，id_dsa和id_dsa.pub下的.ssh目录中生成一对文件。 id_dsa包含私钥，而id_dsa.pub包含公钥。 （键使用数字签名算法。）将公钥文件复制到目标系统，例如使用以下命令：scp〜/ .ssh / id_dsa.pub user@targetsystem.example.com：〜（youll必须使用您的密码。）
+现在将SSH作为正常运行，并使用以下命令：cat id_dsa.pub &raquo;〜/ .ssh / authorized_keysthis将文件（公钥）的内容附加到sshs授权_keys文件中，其中包含所有公共列表可以对此用户帐户进行身份验证的键。
+现在退出并SSH回到目标系统。如果您正确完成了这一点，则不会提示您输入密码，因为公钥系统将对您进行身份验证。 （如果它不起作用，您可能需要使用密码登录，然后使用命令Chmod 600〜/ .ssh /授权程序更改授权_keys文件的权限。或者您的服务器管理员可能会在不使用该系统上配置SSH公钥身份验证。）
+生成密钥对时可以使用其他选项;您可以使用不同的公钥算法和/或密钥长度，并且您还可以在公钥上设置本地密码，您将在每次要使用它时将其键解锁，作为添加的安全措施。由于这可能是笨重的，所以称为SSH代理的程序也存在，这将缓存您的密钥并将它们呈现给您代表访问的服务器，因此您只需进入本地密码“一次。
+还有一种其他类型的SSH密钥也使用。每个服务器都有自己的公钥/私钥对，并且您访问的所有服务器的公钥都存储在您的.ssh目录中的文件中已知的文件中。连接到服务器时，SSH检查是否有服务器公钥;如果没有，它会显示一个提示，允许您验证要连接到该服务器，然后如果继续连接，则将公钥存储在已知_hosts文件中。如果您拥有公钥，但它无法成功解密与该服务器私钥加密的服务器发送的挑战（例如，如果服务器密钥已更改），则SSH显示错误消息，并不允许您连接，如这可能是篡改连接或服务器的人的标志。 （它也可能是良性的;例如，如果已重新安装服务器操作系统，则服务器SSH键可能已更改。）要解决此问题，您可以编辑已知的_Hosts文件并删除错误的公钥（通常会删除错误消息）指出，可以找到错误键的文件的行），并允许服务器在下次连接到它时向您发送新键。
+回答 4 公共关键密码学的整个基础是基于您提出的问题。它只是因为从公钥的私钥的提取是计算地不可行的，即公钥密码系统是安全的，因此使用。
+让我通过RSA密码系统演示这一点。
+这里关键是（n，p，q，a，b）（n，p，q，a，b）。
+公钥是（n，b）（n，b），私钥是（p，q，a）（p，q，a）。
+n = p * qn = p * q {其中p和q两个是大的primes}。
+AA选自1,2，&hellip;&hellip;，φ（n）-11,2，&hellip;.，φ（n）-1。这里φ（n）φ（n）是欧拉的总函数。
+计算BB，使得AB≡1Mod（φ（n））ab≡1mod（φ（n））。
+现在你被赋予公钥
+公共关键密码学的整个基础是基于您提出的问题。它只是因为从公钥的私钥的提取是计算地不可行的，即公钥密码系统是安全的，因此使用。
+让我通过RSA密码系统演示这一点。
+这里关键是（n，p，q，a，b）（n，p，q，a，b）。
+公钥是（n，b）（n，b），私钥是（p，q，a）（p，q，a）。
+n = p * qn = p * q {其中p和q两个是大的primes}。"/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-3W09QM57NF"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-3W09QM57NF', { 'anonymize_ip': false });
+}
+</script>
+
+
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        知识的阶梯
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      
+<div class="ananke-socials">
+  
+</div>
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside>
+      
+
+
+
+
+
+
+
+
+
+
+  <div id="sharing" class="mt3 ananke-socials">
+    
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">如何使用RSA私钥连接到SSH？</h1>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2022-01-23T22:08:02+08:00">January 23, 2022</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><h2 id="如何使用rsa私钥连接到ssh">如何使用RSA私钥连接到SSH？</h2>
+<h3 id="回答-1">回答 1</h3>
+<p>您只需使用私钥代替密码。使用SSH或OpenSSH的CLI，您只需使用-i命令行参数和文件的路径;通常SSH客户端位于GUI中，因此您使用GUI选择器选择密钥文件（可能需要转换为不同的格式; SSH，OpenSSH和Putty是三种主要格式）</p>
+<h3 id="回答-2">回答 2</h3>
+<p>私钥只是一个数字，随机挑选。对私钥的所有权和控制是用户控制与相应比特币地址相关联的所有资金的根源。您可以查看我的（生物）如果您需要，请帮助私钥用于通过证明交易中使用的资金所有权来创造花费比特币所需的签名。私钥必须始终保持秘密，因为向第三方展示它相当于让他们控制通过该密钥保护的比特币。私钥还必须备份并保护免于意外损失，因为如果它丢失，则无法恢复，并且由它所保护的资金也是永远丢失的。</p>
+<h3 id="回答-3">回答 3</h3>
+<p>安全shell（SSH）系统可以配置为允许使用不同类型的身份验证。通常的身份验证要求您使用密码进行身份验证，但您也可以使用公钥加密进行身份验证。您通过生成SSH密钥对来执行此操作，由公钥和私钥组成。您将私钥保留在您自己的系统上，或在您的连接系统上，您将公钥复制到您的系统连接到。 （请注意，这些密钥仅用于身份验证目的，并在建立连接后播放任何角色。）<br>
+N.B .:以下逐步方向用于UNIX / Linux系统。<br>
+要利用公钥身份验证，首先在自己的系统上生成密钥对，命令：ssh-keygen -t dsathis在主目录，id_dsa和id_dsa.pub下的.ssh目录中生成一对文件。 id_dsa包含私钥，而id_dsa.pub包含公钥。 （键使用数字签名算法。）将公钥文件复制到目标系统，例如使用以下命令：scp〜/ .ssh / id_dsa.pub <a href="mailto:user@targetsystem.example.com">user@targetsystem.example.com</a>：〜（youll必须使用您的密码。）<br>
+现在将SSH作为正常运行，并使用以下命令：cat id_dsa.pub &raquo;〜/ .ssh / authorized_keysthis将文件（公钥）的内容附加到sshs授权_keys文件中，其中包含所有公共列表可以对此用户帐户进行身份验证的键。<br>
+现在退出并SSH回到目标系统。如果您正确完成了这一点，则不会提示您输入密码，因为公钥系统将对您进行身份验证。 （如果它不起作用，您可能需要使用密码登录，然后使用命令Chmod 600〜/ .ssh /授权程序更改授权_keys文件的权限。或者您的服务器管理员可能会在不使用该系统上配置SSH公钥身份验证。）<br>
+生成密钥对时可以使用其他选项;您可以使用不同的公钥算法和/或密钥长度，并且您还可以在公钥上设置本地密码，您将在每次要使用它时将其键解锁，作为添加的安全措施。由于这可能是笨重的，所以称为SSH代理的程序也存在，这将缓存您的密钥并将它们呈现给您代表访问的服务器，因此您只需进入本地密码“一次。<br>
+还有一种其他类型的SSH密钥也使用。每个服务器都有自己的公钥/私钥对，并且您访问的所有服务器的公钥都存储在您的.ssh目录中的文件中已知的文件中。连接到服务器时，SSH检查是否有服务器公钥;如果没有，它会显示一个提示，允许您验证要连接到该服务器，然后如果继续连接，则将公钥存储在已知_hosts文件中。如果您拥有公钥，但它无法成功解密与该服务器私钥加密的服务器发送的挑战（例如，如果服务器密钥已更改），则SSH显示错误消息，并不允许您连接，如这可能是篡改连接或服务器的人的标志。 （它也可能是良性的;例如，如果已重新安装服务器操作系统，则服务器SSH键可能已更改。）要解决此问题，您可以编辑已知的_Hosts文件并删除错误的公钥（通常会删除错误消息）指出，可以找到错误键的文件的行），并允许服务器在下次连接到它时向您发送新键。</p>
+<h3 id="回答-4">回答 4</h3>
+<p>公共关键密码学的整个基础是基于您提出的问题。它只是因为从公钥的私钥的提取是计算地不可行的，即公钥密码系统是安全的，因此使用。<br>
+让我通过RSA密码系统演示这一点。<br>
+这里关键是（n，p，q，a，b）（n，p，q，a，b）。<br>
+公钥是（n，b）（n，b），私钥是（p，q，a）（p，q，a）。<br>
+n = p * qn = p * q {其中p和q两个是大的primes}。<br>
+AA选自1,2，&hellip;&hellip;，φ（n）-11,2，&hellip;.，φ（n）-1。这里φ（n）φ（n）是欧拉的总函数。<br>
+计算BB，使得AB≡1Mod（φ（n））ab≡1mod（φ（n））。<br>
+现在你被赋予公钥<br>
+公共关键密码学的整个基础是基于您提出的问题。它只是因为从公钥的私钥的提取是计算地不可行的，即公钥密码系统是安全的，因此使用。<br>
+让我通过RSA密码系统演示这一点。<br>
+这里关键是（n，p，q，a，b）（n，p，q，a，b）。<br>
+公钥是（n，b）（n，b），私钥是（p，q，a）（p，q，a）。<br>
+n = p * qn = p * q {其中p和q两个是大的primes}。<br>
+AA选自1,2，&hellip;&hellip;，φ（n）-11,2，&hellip;.，φ（n）-1。这里φ（n）φ（n）是欧拉的总函数。<br>
+计算BB，使得AB≡1Mod（φ（n））ab≡1mod（φ（n））。<br>
+现在您被授予公钥（n，b）（n，b）。您想从中找出私钥。<br>
+假设你想找到pp或qq。要做到你必须要考虑到NN，这通常是1024或2048位。此任务使用最佳已知的整数分子化算法来计算地不可行，并为系统提供实际安全性。在合理的时间内，你可以破解RSA。<br>
+如果要查找AA，则必须找出φ（n）φ（n），其等于（p-1）（q-1）（p-1）（q-1）。由于您找不到PP和QQ，您将无法找到AA。<br>
+因此，找不到公钥的私钥是不可能的。<br>
+只要因子化是不可行的，这是真的。在量子计算机中使用Shor的算法，这个问题实际上变得可行。因此，在可以解决Quantum计算机，可以解决它，RSA和其他公钥密码系统是安全的。</p>
+<h3 id="回答-5">回答 5</h3>
+<p>这取决于谁是攻击者，你是如何准备的，你在哪里使用公钥。<br>
+如果您准备好了（例如，您是一些关键基础设施的工程师或某事）您只需遵循该政策。可能会关闭与每个受影响的系统的连接，删除公钥，寻找可能的漏洞。您公司最有可能有多层防御，他们不断监控网络和系统的不寻常活动，禁止来自外国IP-S的连接，使用2FA等。有可能发生最糟糕的事情是你需要一个新的键 - 对和你的同龄人不会幸福。<br>
+如果你没有准备好，你可能会遇到麻烦。在最坏的情况下，您没有使用旧公钥列表，所以您不知道您在哪里使用它们。攻击者可以无限期地登录您的系统。<br>
+如果你从未在任何地方使用过那个公共关键，那么谁会关心？只需删除两者并且您完成了。</p>
+<h3 id="回答-6">回答 6</h3>
+<p>下面的其他答案似乎似乎解决了为特定进程生成密钥对的过程。但是，您的问题与程序或流程没有相关。所以我会把鸟瞰着答案&hellip;&hellip;<br>
+生成密钥对的过程取决于您正在创建安全性或隐私的应用程序，程序或服务。对于许多应用程序（例如，Veracrypt，流行的开源文件/磁盘加密程序），用户在创建加密容器的过程期间生成密钥对。步骤涉及（a）定义要创建的安全文件或过程的参数，（b）以随机方式移动鼠标或指针一分钟或两个。这将熵（随机性）添加到私钥。<br>
+通常，用户永远不会直接使用私钥。那是因为它是数千个数字或非常长的十六进制字符。相反，一个使用间接认证和访问凭证，例如密码，指纹或面部或对安全问题的响应。<br>
+如果您拥有完全所有权和对键的控制（即，如果他们不由托管人或服务维护，例如与托管钱包的比特币交换），那么您就会了解正确的备份和可移植性进程至关重要。在这种情况下，您了解Packphrase与私钥之间的关系甚至是重要的。我知道许多永久丢失私钥的人，因为他们在他们对其应用程序或操作系统进行了更改时备份了更改的较为较大的钥匙。<br>
+顺便提及，此答案意味着您的私钥存储在设备上或访问安全过程的服务中。这并非总是如此。使用硬件TPM模块。可以将密钥分开，从而可以包含在自毁硬件组件中。这改变了关键管理的动态，但它没有退缩我上面提供的信息。<br>
+〜ellery戴维斯，山景＆波士顿〜埃夫利戴维斯，山景和波士顿</p>
+<h3 id="回答-7">回答 7</h3>
+<p>要与SSH密钥连接，您需要将公钥添加到远程计算机上的授权文件中。该文件中可能有多个密钥，您可以亲自拥有多个密钥，并且它们并不与特定的计算机相关联（尽管可选地，您可以将它们限制为某个域或IP地址模式以进行额外的安全性）。所以你所要做的就是制作私钥的副本，例如： USB棒或创建另一个Keypair，在仍有访问权限时添加公钥，并从另一台计算机使用该密钥。在Linux中，您可以很容易地使用备用键，例如备用键。一个来自USB棒的SSH -I / Media / Stick1 / id_dsa <a href="mailto:user@remote.example.com">user@remote.example.com</a><br>
+您通常会保留您的.ssh目录的备份并在更改计算机时重新安装它。</p>
+<h3 id="回答-8">回答 8</h3>
+<p>RSA私钥应保持真正私密，作为真正的秘密密钥。消息的发件人使用可公开的公钥加密纯文本消息。公钥就像您的电话号码或您的电子邮件ID，无需担心使用该私钥损害私钥。由于它需要COIT文本的接收器，因此必须由发件人转换加密的消息，因为它需要仅可用的配对私钥。因此，接收方必须通过将其作为指数整个MOD应用于数学模数号的指数整个MOD来解密消息。</p>
+<h3 id="回答-9">回答 9</h3>
+<p>询问如何破解另一个人的账户并不好。我拒绝进一步谈论这一点。<br>
+现在让我们假设您已删除或销毁了远程计算机的一个或两个SSH键。<br>
+首先，在您的本地机器上：<br>
+$ CD〜/ .ssh<br>
+$ rm id_rsa *<br>
+$ ssh me @ remote＃with id_rsa文件ssh将返回询问您的密码。<br>
+一旦您进入.ssh /授权_keys将有一个类似的行：<br>
+$ cat〜/ .ssh / authorized_keys<br>
+ssh-rsa aaaab3nzac1yc2abbadaqabacabafd2x82a5ejbngkelcqnoptb + ohcrdau2fm5lamryl1newrgcuw4g8pja9umesemps6g / nvlnta9oodslvf3i3namhunkapegpgmxndjkilncqjvtzpx / y9fjq2jszpue9<br>
+询问如何破解另一个人的账户并不好。我拒绝进一步谈论这一点。<br>
+现在让我们假设您已删除或销毁了远程计算机的一个或两个SSH键。<br>
+首先，在您的本地机器上：<br>
+$ CD〜/ .ssh<br>
+$ rm id_rsa *<br>
+$ ssh me @ remote＃with id_rsa文件ssh将返回询问您的密码。<br>
+一旦您进入.ssh /授权_keys将有一个类似的行：<br>
+$ cat〜/ .ssh / authorized_keys<br>
+SSH-RSA AAAAB3NzaC1yc2EABBADAQABACABAFd2X82a5ejBNgkElcqnOPtb + OHCrDau2FM5LamrYL1newRGCuW4G8pjA9UesEmpS6G / NVlntA9OOdSlVF3I3nAmhUNkapEgpGMXNDjKILNcQJJVTzPx / Y9fjq2jSZpuE93Ikx80RhgZ / 1zyUg9foeafNB4 + mNLwFQY4WcTKzzaZj982vuh4u / 7kn4itqbXJUW / uFLdn / uQDs9BBMQjgWhzU / TjCQU5fwi5VTyYydAa + WWdz8lhgwCqFn1AfHhwlru7llrsIlbuq81olwfDdVPTVc + OQcdwfYA0hXFO6UlSzE + 2duirdUhxxN0dO1Kj3 / 4PyehPPapJxoBXQvRSupWs =时代@艾伦服务台<br>
+SSH-RSA讲述了预期的键（主要是RSA或DSA），然后是公钥，最后是用户名@ hostname识别谁使用此键和从哪里。<br>
+使用文本编辑器删除该行，可能有其他部分，或者那是您唯一可以删除授权的行。<br>
+现在，退出将返回您所做的本地机器：<br>
+$ ssh-keygen -t dsa<br>
+生成公共/私人DSA密钥对。<br>
+输入要保存密钥的文件（/home/era/.ssh/d_dsa）：<br>
+输入密码短语（为空无密码短语）：<br>
+再次输入相同的密码：<br>
+保存密钥/home/era/.ssh/d_dsa失败：密码太短（最少五个字符）<br>
+ERA @时代：〜$ SSH-KEYGEN -T DSA<br>
+生成公共/私人DSA密钥对。<br>
+输入要保存密钥的文件（/home/era/.ssh/d_dsa）：<br>
+输入密码短语（为空无密码短语）：<br>
+再次输入相同的密码：<br>
+您的身份证明已保存在/home/era/.ssh/d_dsa中。<br>
+您的公钥已保存在/home/era/.ssh/d_dsa.pub中。<br>
+关键指纹是：<br>
+SHA256：ozursz2xrhmv / 7czk2uyrlkpiajizl2tlar3rmc / 8m8 <a href="mailto:era@era.jimani.com">era@era.jimani.com</a><br>
+键QuandAlt图像是：</p>
+<ul>
+<li>&mdash; [DSA 1024] &mdash;- +<br>
+| .. |<br>
+| 。 。|<br>
+| 。 。 。 。 。|<br>
+| O S. O |<br>
+| o O = O OOO OO |<br>
+| 。 + o.o * o。= o = + |<br>
+| .o。= OE ++ o。++ + |<br>
+| o +++ = + &hellip; =。 .. |</li>
+<li>&mdash;- [SHA256] &mdash;&ndash; +<br>
+文件名选项允许您登录的每个远程系统的不同键对。<br>
+密码短语可以是空的，用于在没有密码的情况下登录遥控器。<br>
+现在要安装新密钥对。<br>
+$ ssh-copy-id -i id_dsa_remote远程<br>
+为此，我生成：<br>
+$ ssh-keygen -t dsa<br>
+生成公共/私人DSA密钥对。<br>
+输入要保存密钥的文件（/home/era/.ssh/d_dsa）：/home/era/.ssh/d_dsa.tst<br>
+输入密码短语（为空无密码短语）：<br>
+再次输入相同的密码：<br>
+您的身份证明已保存在/home/era/.ssh/d_dsa.tst中。<br>
+您的公钥已保存在/home/era/.ssh/d_dsa.tst.pub中。<br>
+关键指纹是：<br>
+SHA256：T2YDYZVIEAJHHCINEMZB / YO3G79SKMX4WN9GGF2FJY ERA @ Allen-Desk<br>
+键QuandAlt图像是：</li>
+<li>&mdash; [DSA 1024] &mdash;- +<br>
+| o * = +。 。 |<br>
+| Oobo ..。 |<br>
+| .o *。 O |<br>
+| o .. + + |<br>
+| o o s。 |<br>
+| .. +。 。 o |<br>
+| ..O + ==。= |<br>
+| .o + * = + EO。 |<br>
+| 。++++。 |</li>
+<li>&mdash;- [SHA256] &mdash;&ndash; +<br>
+现在：<br>
+$ ssh-copy-id -i / home/era/.ssh/id_dsa.tst时代<br>
+/ usr / bin / ssh-copy-id：Info：仍需安装1个密钥 - 如果您现在提示出现，则是安装新密钥<br>
+添加的键数量：1<br>
+现在尝试登录机器，带：SSH时代<br>
+并检查以确保只添加了所需的密钥。<br>
+$ ssh时代<br>
+欢迎来到Ubuntu 18.04.3 LTS（GNU / Linux 4.15.0-20-通用x86_64）<br>
+*文档：官方Ubuntu文档<br>
+*管理：景观|家<br>
+*支持：基础设施的Ubuntu优势| Ubuntu.<br>
+*在kubecon过度曝气：microk8s.status只是吹嘘我的思想。<br>
+MicroK8S命​​令参考| microk8s.<br>
+*规范的LivePatch可供安装。</li>
+</ul>
+<ul>
+<li>减少系统重新启动并提高内核安全性。激活：<br>
+规范的LivePatch服务| Ubuntu.<br>
+上次登录：2019年5月5日16:03:14 2019年从74.81.88.26<br>
+安装和工作的新密钥。<br>
+有关更多查看https://web.archive.org/web/20190513063729/htps://linuxhint.com/pardworlless_login_ssh/<br>
+如何管理多个SSH键<br>
+如何在Linux  -  Ostechnix中配置基于SSH基于钥匙的身份验证<br>
+之后：<br>
+使用SSH配置文件简化您的生活| nerderati.<br>
+OpenSSH配置文件示例 -  nixcraft<br>
+享受 ！</li>
+</ul>
+<h3 id="回答-10">回答 10</h3>
+<p>如果您可以访问拥有键的用户，则通常在他的本地SSH文件中。<br>
+如果您希望包含密钥的文件的路径，则默认设置为：<code>〜用户名/ .ssh / id_rsa</code>，除非为大多数Linux系统和MacOS明确更改。只需将用户名更改为您要查找的密钥的用户的名称。</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://xiangqingw.github.io/" >
+    &copy;  知识的阶梯 2022 
+  </a>
+    <div>
+<div class="ananke-socials">
+  
+</div></div>
+  </div>
+</footer>
+
+  </body>
+</html>
