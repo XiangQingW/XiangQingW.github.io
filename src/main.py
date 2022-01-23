@@ -50,14 +50,17 @@ def get_all_gened_question_ids():
     return gened_ids
 
 
-def read_post_header(path):
+def read_post_header(path, title):
     f = open(path, 'r', encoding='utf-8')
 
     lines = []
     for line in f:
         if 'draft' in line:
             continue
-        lines.append(line)
+        if 'title' in line:
+            lines.append('title: ' + title + '\n')
+            continue
+        lines.append(line + '\n')
 
     f.close()
     return lines
@@ -78,6 +81,32 @@ def write_gened_question_id(id):
     f.close()
 
 
+def dedup_contents(contents):
+    r = []
+    total_len = len(contents)
+    for index, c in enumerate(contents):
+        sub_c = c[0:20]
+        if index == total_len - 1:
+            r.append(c)
+            break;
+
+        striped_c = c.strip()
+        if not striped_c:
+            continue
+
+        found_dup = False
+
+        for i in range(index + 1, min(index + 5, total_len)):
+            if contents[i].startswith(sub_c):
+                found_dup = True
+                # print('found dup: pre_line= {} cur_line= {}'.format(c, contents[i]))
+                break
+
+        if not found_dup:
+            r.append(c)
+    return r
+
+
 def gen_docs():
     id2answers = get_all_cn_answers()
     all_gened_question_ids = get_all_gened_question_ids()
@@ -87,7 +116,7 @@ def gen_docs():
 
     for question_id, answers in id2answers.items():
         cur_post_count += 1
-        print('start to gen post: {}/{}'.format(cur_post_count, total_post_count))
+        print('start to gen post: id= {} {}/{}'.format(question_id, cur_post_count, total_post_count))
         if question_id in all_gened_question_ids:
             print('Question has already gened: id= ', question_id)
             continue
@@ -97,20 +126,25 @@ def gen_docs():
             continue
 
         title = answers[0].title
-        path = 'posts/' + title[:50] + '.md'
+        path = 'posts/' + question_id + '.md'
 
         subprocess.run(['hugo', 'new', path], shell=True)
 
         path = 'content/' + path
 
-        post_content = read_post_header(path)
+        post_content = read_post_header(path, title)
         post_content.append('\n')
         post_content.append('## ' + title + '  ')
 
         post_content.append('\n')
         for idx, answer in enumerate(answers):
-            post_content.append('### ' + '答案 ' + str(idx + 1) + '\n')
+            post_content.append('### ' + '回答 ' + str(idx + 1) + '\n')
+            raw_content = []
             for line in answer.content.splitlines():
+                raw_content.append(line)
+
+            dedup_content = dedup_contents(raw_content)
+            for line in dedup_content:
                 post_content.append(line + '  ' + '\n')
 
         write_post(path, post_content)
@@ -119,7 +153,6 @@ def gen_docs():
 
         all_gened_question_ids.add(question_id)
         write_gened_question_id(question_id)
-        break
 
 
 def main():
