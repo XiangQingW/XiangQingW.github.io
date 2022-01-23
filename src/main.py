@@ -2,8 +2,11 @@
 # __main__.py
 import subprocess
 import sqlite3
+import os.path
+
 
 QUORA_DB = "out\quora.db"
+GENED_QUESTION_IDS_FILE = "out\gened_question_ids.txt"
 
 class CnAnswerRow:
     def __init__(self, question_id, title, content):
@@ -33,17 +36,49 @@ def get_all_cn_answers():
     return id2answer
 
 
-def gen_doc():
-    subprocess.run(['hugo', '-h'], shell=True)
+def get_all_gened_question_ids():
+    if not os.path.isfile(GENED_QUESTION_IDS_FILE):
+        return set()
+
+    f = open(GENED_QUESTION_IDS_FILE, 'r', encoding='utf-8')
+    gened_ids = set()
+
+    for line in f:
+        gened_ids.add(line.rstrip('\r\n'))
+
+    f.close()
+    return gened_ids
+
+
+def write_gened_question_id(id):
+    f = open(GENED_QUESTION_IDS_FILE, 'a+', encoding='utf-8')
+    f.write(id + '\n')
+    f.close()
+
+
+def gen_docs():
     id2answers = get_all_cn_answers()
+    all_gened_question_ids = get_all_gened_question_ids()
+
     for question_id, answers in id2answers.items():
-        print(question_id)
-        print(len(answers))
-        break;
+        if question_id in all_gened_question_ids:
+            print('Question has already gened: id= ', question_id)
+            continue
+
+        if not answers:
+            print('Questoin doesnt have answer: ', question_id)
+            continue
+
+        title = answers[0].title
+        subprocess.run(['hugo', 'new', 'posts/' + title + '.md'], shell=True)
+
+        all_gened_question_ids.add(question_id)
+        write_gened_question_id(question_id)
+        break
 
 
 def main():
-    gen_doc()
+    gen_docs()
 
 
 if __name__ == '__main__':
