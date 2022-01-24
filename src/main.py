@@ -3,10 +3,12 @@
 import subprocess
 import sqlite3
 import os.path
+import argparse
 
 
 QUORA_DB = "out\quora.db"
 GENED_QUESTION_IDS_FILE = "out\gened_question_ids.txt"
+SITE_MAP_FILE = "docs\sitemap.xml"
 
 class CnAnswerRow:
     def __init__(self, question_id, title, content):
@@ -155,8 +157,43 @@ def gen_docs():
         write_gened_question_id(question_id)
 
 
+def gen_site_map():
+    all_gened_question_ids = get_all_gened_question_ids()
+
+    lines = []
+    lines.append('<?xml version="1.0" encoding="UTF-8"?>')
+    lines.append('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">')
+
+    for question_id in all_gened_question_ids:
+        lines.append('\t<url>')
+        url = 'https://xiangqingw.github.io/posts/' + question_id.lower()
+        lines.append('\t\t<loc>{}</loc>'.format(url))
+        lines.append('\t\t<lastmod>2022-01-23</lastmod>')
+        lines.append('\t</url>')
+
+    lines.append('</urlset>')
+
+    f = open(SITE_MAP_FILE, 'w', encoding='utf-8')
+    for line in lines:
+        f.write(line + '\n')
+    f.close()
+
+    print('gen site map suc')
+    return
+
+
 def main():
-    gen_docs()
+    parser = argparse.ArgumentParser()
+
+    parser.add_argument("module", choices=['post', 'site_map'], help="type of function")
+    args = parser.parse_args()
+
+    module_name = args.module
+
+    if module_name == 'post':
+        gen_docs()
+    elif module_name == 'site_map':
+        gen_site_map()
 
 
 if __name__ == '__main__':
